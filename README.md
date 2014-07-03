@@ -15,7 +15,7 @@ This script uses the phidget controller and the phidges SDK for .NET to implemen
 
 #### precautions
 This code is provided as is! 
-It takes no care of malformed messages as there is no crc provided in the given protocol.
+
 
 #### troubleshooting:
 
