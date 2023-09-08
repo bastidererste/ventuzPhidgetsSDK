@@ -6,6 +6,13 @@ This script uses the phidget controller and the phidges SDK for .NET to implemen
 
 #### Create the following outputs:
 
+
+
+##### dlls
+| type          | name          |
+| ------------- |-------------|
+| LAC  | Phidget22.NET.dll |
+
 ##### outputs
 
 | type          | name          |
