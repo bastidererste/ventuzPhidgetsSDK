@@ -1,7 +1,10 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Ventuz.Kernel;
-using Phidgets;
-using Phidgets.Events;
+using Phidget22;
+
 
 
 public class Script : ScriptBase, System.IDisposable
@@ -11,32 +14,36 @@ public class Script : ScriptBase, System.IDisposable
     // whether the Generate() method should return true or false
     // during its next execution.
     private bool changed;
-	static Encoder encoder;
+	Encoder encoder0;
 	
     // This Method is called if the component is loaded/created.
     public Script()
     {
         // Note: Accessing input or output properties from this method
         // will have no effect as they have not been allocated yet.
-	        
-			encoder = new Phidgets.Encoder();
-			
-			encoder.PositionChange += new EncoderPositionChangeEventHandler( encoder_PositionChange );
-			
-			encoder.open();
-
-			encoder.waitForAttachment();
-
 		
+		try 
+		{	        
+		
+			encoder0 = new Encoder();
+
+			encoder0.Open(1000);
+		
+		}
+		catch (Exception)
+		{
+		
+			VLog.Info("not connnected");
+		}
+
+
     }
     
     // This Method is called if the component is unloaded/disposed
     public virtual void Dispose()
     {
-		
-		encoder.close();
-		
-		encoder = null;
+		if(encoder0!=null)
+			encoder0.Close();
     }
     
     // This Method is called if an input property has changed its value
@@ -54,6 +61,9 @@ public class Script : ScriptBase, System.IDisposable
     //               values really have been changed.
     public override bool Generate()
     {
+		if(encoder0 != null)
+			position = (int)encoder0.Position;
+		
         if (changed)
         {
             changed = false;
@@ -62,12 +72,4 @@ public class Script : ScriptBase, System.IDisposable
 
         return false;
     }
-	
-	public void encoder_PositionChange(object sender, EncoderPositionChangeEventArgs e)
-	{
-		
-		position = encoder.encoders[e.Index];
-		changed = true;
-	
-	}
 }
