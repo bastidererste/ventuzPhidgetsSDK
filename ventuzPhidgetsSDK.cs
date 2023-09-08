@@ -62,7 +62,7 @@ public class Script : ScriptBase, System.IDisposable
     public override bool Generate()
     {
 		if(encoder0 != null)
-			position = (int)encoder0.Position;
+			position = (double)encoder0.Position;
 		
         if (changed)
         {
