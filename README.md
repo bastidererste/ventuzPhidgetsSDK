@@ -10,7 +10,7 @@ This script uses the phidget controller and the phidges SDK for .NET to implemen
 
 | type          | name          |
 | ------------- |-------------|
-| integer  | position |
+| Double  | position |
 
 
 #### precautions
