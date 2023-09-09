@@ -61,8 +61,10 @@ public class Script : ScriptBase, System.IDisposable
     //               values really have been changed.
     public override bool Generate()
     {
-		if(encoder0 != null)
+		if(encoder0 != null){
 			position = (double)encoder0.Position;
+                        changed=true;
+			}
 		
         if (changed)
         {
